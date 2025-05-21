@@ -1,0 +1,123 @@
+<div class="home-container">
+  <!-- Background Slides -->
+  <div class="slide"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
+  <div class="slide"></div>
+
+  <!-- Main Content (all your sections sit here) -->
+  <div class="content">
+    <!-- HEADER SECTION -->
+    <header class="site-header">
+      <div class="header-content">
+        <div class="logo-section">
+          <img src="https://img.freepik.com/free-vector/shopping-cart-supermarket-logo-template_23-2148470295.jpg" 
+               alt="Smart Mart Logo" class="logo">
+          <div class="brand-text">
+            <h1>Smart Mart</h1>
+            <p>Buy smart, be smart!</p>
+          </div>
+        </div>
+        <button class="cta-button" (click)="viewAll()">Get Started</button>
+      </div>
+    </header>
+
+    <!-- FEATURES SECTION -->
+    <section class="features">
+      <!-- Best Prices card with click event to trigger animation -->
+      <div class="feature-card" (click)="triggerAnimation()">
+        <img src="https://images.pexels.com/photos/1602726/pexels-photo-1602726.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Best Prices">
+        <h3>Best Prices</h3>
+        <p>Unbeatable deals on daily essentials</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://images.pexels.com/photos/3683206/pexels-photo-3683206.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Fast Delivery">
+        <h3>Fast Delivery</h3>
+        <p>Same day delivery available</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Premium Quality">
+        <h3>Premium Quality</h3>
+        <p>100% quality guaranteed</p>
+      </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="products">
+      <div class="section-header">
+        <h2>Featured Products</h2>
+        <button class="view-all" (click)="view()">View All Products</button>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="https://as2.ftcdn.net/v2/jpg/05/37/04/61/1000_F_537046123_s8JVn2NrClPQDOryhSm8jonYZPfIzPRX.webp" alt="Fresh Vegetables">
+          <h3>Fresh Vegetables</h3>
+          <p>Farm fresh vegetables daily</p>
+        </div>
+        <div class="product-card">
+          <img src="https://as2.ftcdn.net/v2/jpg/00/70/94/63/1000_F_70946377_VJXdpJqld6XOsOTO6lt95ieZSxGO0faM.jpg" alt="Organic Fruits">
+          <h3>Organic Fruits</h3>
+          <p>100% organic certified</p>
+        </div>
+        <div class="product-card">
+          <img src="https://as1.ftcdn.net/v2/jpg/01/57/03/60/1000_F_157036026_9tMnjyVOQ3kjAoQtx8wStEHZVuii1Tq1.jpg" alt="Dairy Products">
+          <h3>Dairy Products</h3>
+          <p>Fresh dairy products</p>
+        </div>
+        <div class="product-card">
+          <img src="https://as1.ftcdn.net/v2/jpg/01/94/67/46/1000_F_194674604_ljLHejiSLubzErvpKQleLptz8RTAspIT.jpg" alt="Bakery Items">
+          <h3>Bakery Items</h3>
+          <p>Freshly baked daily</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUIDES SECTION -->
+    <section class="guides">
+      <div class="container">
+        <div class="section-header">
+          <h2>Helpful Guides</h2>
+        </div>
+        <div class="guides-container">
+          <div *ngFor="let guide of guides" class="guide-card">
+            <button 
+              (click)="toggleGuide(guide.id)"
+              class="guide-button"
+              [ngClass]="{'active': openGuide === guide.id}">
+              {{ guide.title }}
+              <span class="icon">
+                <!-- Show ChevronUp if open, otherwise ChevronDown -->
+                <svg *ngIf="openGuide === guide.id" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                <svg *ngIf="openGuide !== guide.id" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+            <div class="guide-content" [ngClass]="{'open': openGuide === guide.id}">
+              <p>{{ guide.content }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>&copy; 2025 Smart Mart. All rights reserved.</p>
+    </footer>
+
+    <!-- CUSTOM POPUP MODAL -->
+    <div class="popup-overlay" *ngIf="showPopup">
+      <div class="popup">
+        <p>Please login first.</p>
+        <button class="close-button" (click)="closePopup()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+/* Container styles with centered content and a background image */
+.admin-feedback-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url('https://cdn.pixabay.com/photo/2022/05/18/07/08/feedback-7204547_640.jpg')
+    no-repeat center center;
+  background-size: cover;
+  overflow: auto;
+}
+
+/* Semi-transparent overlay to darken the background image */
+.admin-feedback-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  z-index: 0;
+}
+
+/* Ensure all main content sits above the overlay */
+.admin-feedback-container > * {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 800px;  /* Limits width for enhanced readability */
+}
+
+/* Style the heading for clear readability */
+.admin-feedback-container h2 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 20px;
+}
+
+/* Table styling with a subtle white background and fade-in animation */
+.feedback-table {
+  width: 100%;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white background */
+  border-collapse: collapse;
+  animation: fadeInTable 1s ease-in-out;
+}
+
+.feedback-table th,
+.feedback-table td {
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+.feedback-table th {
+  background: #2e7d32; /* Light-green shade for headers */
+  color: #fff;
+}
+
+/* Fade-in animation keyframes */
+@keyframes fadeInTable {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Styling for error and no-feedback messages */
+.error-message,
+.no-feedback-message {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, 0.7); /* Light-green overlay for contrast */
+  padding: 10px;
+  border-radius: 5px;
+}
+/* Center Pagination Controls */
+.pagination-controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Pagination Buttons */
+.pagination-controls button {
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: #cc254f; /* Forest Green */
+  color: white;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  background-color: #A5D6A7; /* Light Green */
+  cursor: not-allowed;
+}
+
+/* Page Number Styling */
+.current-page {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1B5E20;
+  color: #e0dece;
+  margin: 0 15px;
+}
+
+/* Dynamic Colors for Stars Based on Rating */
+.stars {
+  font-size: 1.5rem;
+  color: lightgray; /* Default star color */
+}
+
+/* Bright red for 1-star */
+.stars .selected.rating-1 {
+  color: #D50000; /* Bright Red */
+}
+
+/* Normal red for 2-star */
+.stars .selected.rating-2 {
+  color: #E53935; /* Soft Red */
+}
+
+/* Blue for 3-star */
+.stars .selected.rating-3 {
+  color: #1E88E5; /* Blue */
+}
+
+/* Yellow for 4-star */
+.stars .selected.rating-4 {
+  color: #ffd900; /* Gold */
+}
+
+/* Green for 5-star */
+.stars .selected.rating-5 {
+  color: #1B5E20; /* Deep Green */
+}
+
+/* Smooth transition effect */
+.stars .selected {
+  transition: color 0.3s ease;
+}

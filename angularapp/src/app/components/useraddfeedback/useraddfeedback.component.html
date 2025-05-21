@@ -1,0 +1,80 @@
+<div class="user-feedback-container">
+  <div class="form-wrapper">
+    <h2 class="mb-4">Add Feedback</h2>
+    <form [formGroup]="feedbackForm" (ngSubmit)="addFeedback()" novalidate>
+      <!-- Feedback Message -->
+      <div class="form-group mb-3">
+        <label for="message">Feedback Message:</label>
+        <textarea
+          id="message"
+          formControlName="message"
+          rows="3"
+          class="form-control"
+          placeholder="Enter your feedback here..."
+        ></textarea>
+        <div
+          *ngIf="feedbackForm.get('message')?.touched && feedbackForm.get('message')?.errors"
+          class="text-danger mt-1"
+        >
+          <small *ngIf="feedbackForm.get('message')?.errors?.required">
+            Message is required.
+          </small>
+          <small *ngIf="feedbackForm.get('message')?.errors?.minlength">
+            Message must be at least 10 characters long.
+          </small>
+        </div>
+      </div>
+
+      <!-- Star Rating -->
+      <div class="form-group mb-3">
+        <label for="rating">Rating:</label>
+        <div class="stars">
+          <span
+            *ngFor="let star of stars; let i = index"
+            tabindex="0"
+            (click)="onStarClick(i)"
+            (keydown)="onStarKeyDown($event, i)"
+            [class.selected]="isStarActive(i)"
+          >
+            ★
+          </span>
+        </div>
+        
+        <div
+          *ngIf="feedbackForm.get('rating')?.touched && feedbackForm.get('rating')?.errors"
+          class="text-danger mt-1"
+        >
+          <small *ngIf="feedbackForm.get('rating')?.errors?.required">
+            Rating is required.
+          </small>
+          <small *ngIf="feedbackForm.get('rating')?.errors?.min">
+            Rating must be at least 1.
+          </small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100" [disabled]="feedbackForm.invalid">
+        Submit Feedback
+      </button>
+    </form>
+  </div>
+
+<!-- Success Popup Modal -->
+<div *ngIf="successMessage" class="custom-modal">
+  <div class="modal-content">
+    <h3>Success</h3>
+    <p>{{ successMessage }}</p>
+    <button class="btn btn-primary" (click)="finishSuccess()">OK</button>
+  </div>
+</div>
+
+
+  <!-- Custom Error Popup Modal -->
+  <div *ngIf="errorMessage" class="custom-modal">
+    <div class="modal-content">
+      <h3>Error</h3>
+      <p>{{ errorMessage }}</p>
+      <button class="btn btn-danger" (click)="closeErrorModal()">Close</button>
+    </div>
+  </div>
+</div>

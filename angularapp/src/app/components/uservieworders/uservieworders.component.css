@@ -1,0 +1,180 @@
+/* --- KEYFRAME ANIMATIONS --- */
+
+/* Fade in the whole content */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animated {
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+/* Slide in upward animation for the table */
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.slideInUp {
+  animation-name: slideInUp;
+}
+
+/* Bounce in animation for popup */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.bounceIn {
+  animation-name: bounceIn;
+}
+
+/* --- BACKGROUND & PAGE LAYOUT --- */
+
+/* Full-page background wrapper using the provided URL and light purple overlay */
+.background-wrapper {
+  background: 
+    linear-gradient(rgba(106,27,154,0.4), rgba(106,27,154,0.4)),
+    url('https://media-hosting.imagekit.io/35b3951640454bf7/illustration%20of%20an%20art%20studio%20backdrop,%20cozy,%20natural%20light,%20lots%20of%20plants%20and%20purple%20color%20related%2003-05-2025%20at%2014-51-18.jpeg?Expires=1840872157&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=UfNYEx0mLHG1mzSU8i9pFxS~oYfkhCmLAfiDl0RRC8TyNOKZlvtTJsYBjLtqJYOEQDlkvLG~tYmX7--RgN-ixsyub3Wer~V4fNGCbR6P3juGXvAbucHxvL7VTTA6oq1NZFY1N2ABHXUsjmTa8xalZdptDtKseR13NX5ogNTCt0ysoYHeENM1r~BZhQUQXJ6drVCIozfWuWdRdd9FF83YQbRV~-X0ZQaCCs7TIN4Xbc5llR0hvBzShar3rKbEADqHxnvwUVQ-z0p1LEteqi1QnHCIY-dLGED2OOmJvUu3HhHoUpLI~kxOxipZvMnpzmYffCH1eLtHXm6y2smWdyWuLA__') 
+    no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* --- ORDERS CONTAINER & TABLE --- */
+
+/* Container for orders with a light, semi-transparent background */
+.orders-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 1200px;
+}
+
+/* Table styling */
+.table {
+  margin-top: 1rem;
+}
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+.table th {
+  background-color: #6a1b9a; /* Dark purple header */
+  color: #fff;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f3e5f5;  /* Light purple tone for odd rows */
+}
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: #fff;
+}
+
+/* --- NO DATA MESSAGE --- */
+.no-data {
+  padding: 2rem;
+  color: #6a1b9a;
+}
+
+/* --- ORDER DETAILS SECTION --- */
+.order-details {
+  background-color: #f9fbe7; /* Soft light background */
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Product image styling */
+.product-img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+/* --- CUSTOM POPUP OVERLAY --- */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+.popup-content {
+  background-color: #f3e5f5;   /* Light purple background */
+  border: 2px solid #ba68c8;   /* Light purple border */
+  border-radius: 5px;
+  padding: 20px;
+  min-width: 300px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.popup-content h3 {
+  color: #6a1b9a; /* Dark purple heading */
+  margin-bottom: 10px;
+}
+.popup-content p {
+  color: #000;
+  margin-bottom: 20px;
+}
+.popup-actions button {
+  margin: 5px;
+}
+.text-success {
+  color: green;
+  font-weight: bold;
+}
+
+.text-danger {
+  color: red;
+  font-weight: bold;
+}
+.text-primary {
+  color: blue;
+  font-weight: bold;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pagination-controls .ngx-pagination {
+  display: flex;
+  justify-content: center;
+}

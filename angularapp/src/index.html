@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SmartMart - Your Shopping Cart</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://media-hosting.imagekit.io/d240336c5d4a419f/food.png?Expires=1840772165&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=JPHWlauqhlJg~OJdD87QL8Upd18osbZOV9URrTmEJ-DvXdSGPmKOaZg2FReO~8JcMND~1EWIE2XqF4Zc-2jOk~eARQiS2M9R7-xNv6N56T9F-v5Cnu3ivdMb8zQF6r0~kcaF3eFjjRC4-guL3s9CbbIVcIsRWuV2PD2x6pccqNbKaxuAOpdC4tx24ljAISmy4HapDPLFDsmGsmZcUTfRdS5Qc5bPU8ezRddGJlDD2ziMsIwyPndwlnJHL4yJDMaA1C5PZ5dARLphkwULApUrYu3SgMWwHZU9Rkz2rrdoUCESz4sKN5SIosiG-LSmr2wxDyo5uKyGxDuGvbMuxvJKdw__"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset and base styling */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+        line-height: 1.5;
+      }
+      /* Center the loading content */
+      .loading-app {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 0 16px;
+      }
+      /* Video spinner styling */
+      .loading-spinner {
+        width: 80px;
+        margin-bottom: 16px;
+      }
+      /* Enhanced loading text styling */
+      .loading-text {
+        font-size: 1.2rem;
+        color: #757575;
+        font-weight: 600;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 2s ease-in-out;
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <app-root>
+      <div class="loading-app">
+        <video
+          class="loading-spinner"
+          autoplay
+          loop
+          muted
+          playsinline
+          tabindex="-1"
+        >
+          <source
+            src="https://cdn-icons-mp4.flaticon.com/512/12414/12414326.mp4"
+            type="video/mp4"
+          />
+          <track
+            label="English"
+            kind="captions"
+            srclang="en"
+            src="path-to-captions-en.vtt"
+            default
+          >
+          Your browser does not support the video tag.
+        </video>
+        <!-- Enhanced loading text -->
+        <p class="loading-text">Happiness Comming Your Way</p>
+      </div>
+    </app-root>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<div 
+  class="login-page d-flex align-items-center justify-content-center"
+  [ngStyle]="{'background-image': 'url(' + backgroundUrl + ')'}"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card login-card shadow">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Login</h3>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <!-- Username Field -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  formControlName="username"
+                  class="form-control"
+                  placeholder="Enter your username"
+                />
+                <!-- Display validation errors for username -->
+                <div *ngIf="submitted && f.username.errors" class="text-danger mt-1">
+                  <div *ngIf="f.username.errors.required">Username is required.</div>
+                  <div *ngIf="f.username.errors.minlength">
+                    Username must be at least 3 characters.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password Field -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  formControlName="password"
+                  class="form-control"
+                  placeholder="Enter your password"
+                />
+                <!-- Display validation errors for password -->
+                <div *ngIf="submitted && f.password.errors" class="text-danger mt-1">
+                  <div *ngIf="f.password.errors.required">Password is required.</div>
+                  <div *ngIf="f.password.errors.pattern">
+                    Password must be 8-20 characters long, and include at least one uppercase letter,
+                    one lowercase letter, one number, and one special character.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Login Button -->
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+
+            <!-- Registration Link for Users Without an Account -->
+            <div class="link-container text-center mt-3">
+              <a [routerLink]="'/register'" class="register-link">
+                Don't have an account? Register here.
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Popup Overlay -->
+<div class="custom-popup" *ngIf="showPopup">
+  <div class="popup-content">
+    <h4>{{ popupTitle }}</h4>
+    <p>{{ popupMessage }}</p>
+    <button type="button" class="btn btn-primary" (click)="closePopup()">OK</button>
+  </div>
+</div>

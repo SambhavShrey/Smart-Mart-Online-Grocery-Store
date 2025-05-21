@@ -1,0 +1,7 @@
+<div class="popup-overlay" *ngIf="show" [@fadeInOut]>
+    <div class="popup-content animate__animated animate__bounceIn">
+      <h3>Session Expired</h3>
+      <p>Your session has expired. You will be redirected to login page.</p>
+      <button (click)="closePopup()">Close</button>
+    </div>
+  </div>

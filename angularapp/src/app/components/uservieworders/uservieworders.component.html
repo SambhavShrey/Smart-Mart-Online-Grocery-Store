@@ -1,0 +1,96 @@
+<div class="background-wrapper">
+  <div class="container mt-4 orders-container animated fadeIn">
+    <h2 class="text-center mb-4">User Orders</h2>
+
+    <!-- If there are orders, display the table; else, show a friendly no-data message -->
+  
+    <div *ngIf="orders?.length > 0; else noOrders">
+      <table class="table table-bordered table-striped animated slideInUp">
+        <thead class="table-dark">
+          <tr>
+            <th>Order ID</th>
+            <th>Shipping Address</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders | paginate: { itemsPerPage: 2, currentPage: page }">
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.shippingAddress }}</td>
+            <td [ngClass]="{
+              'text-success': order.status === 'SHIPPED',
+              'text-danger': order.status === 'REJECTED',
+              'text-primary': order.status === 'PENDING'
+
+            }">
+              {{ order.status }}
+            </td>
+           
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="getOrderDetails(order.orderId)">
+                View Details
+              </button>
+             <button class="btn btn-danger btn-sm" 
+  (click)="deleteOrder(order.orderId)" 
+  [disabled]="order.status === 'SHIPPED' || order.status === 'REJECTED'">
+  Delete
+</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>
+    <ng-template #noOrders>
+      <div class="no-data text-center animated fadeIn">
+        <h4>No orders available!</h4>
+      </div>
+    </ng-template>
+
+    <!-- Order Details Section (if an order is selected) -->
+    <div *ngIf="selectedOrder" class="mt-3 order-details animated fadeIn">
+      <h2 class="text-center mb-3">Order Details</h2>
+      <p><strong>Order ID:</strong> {{ selectedOrder.orderId }}</p>
+      <p><strong>Shipping Address:</strong> {{ selectedOrder.shippingAddress }}</p>
+      <p><strong>Total Amount:</strong> {{ selectedOrder.totalAmount | currency: 'INR' }}</p>
+      <p><strong>Quantity:</strong> {{ selectedOrder.quantity }}</p>
+      <p><strong>Status:</strong> {{ selectedOrder.status }}</p>
+      <p><strong>Products:</strong></p>
+      <ul>
+        <li *ngFor="let product of selectedOrder.products">
+          <b>
+            {{ product.name }} – {{ product.description }} | 
+            <img [src]="product.photoImage" alt="{{ product.name }}" class="product-img">
+          </b>
+          (Price: {{ product.price | currency: 'INR' }}, Category: {{ product.category }})
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Popup Overlay -->
+<div *ngIf="showPopup" class="popup-overlay animated fadeIn">
+  <div class="popup-content animated bounceIn">
+    <h3>{{ popupTitle }}</h3>
+    <p>{{ popupMessage }}</p>
+    <div class="popup-actions">
+      <!-- Confirmation Popup Buttons -->
+      <button *ngIf="popupTitle === 'Confirm Delete'" class="btn btn-primary" (click)="popupOnConfirm()">
+        Yes
+      </button>
+      <button *ngIf="popupTitle === 'Confirm Delete'" class="btn btn-secondary" (click)="popupOnCancel()">
+        No
+      </button>
+      <!-- Success Popup Button -->
+      <button *ngIf="popupTitle === 'Success'" class="btn btn-success" (click)="closePopup()">
+        OK
+      </button>
+    </div>
+  </div>
+</div>
+
+

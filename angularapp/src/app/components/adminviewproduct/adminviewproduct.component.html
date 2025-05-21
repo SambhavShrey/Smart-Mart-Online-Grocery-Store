@@ -1,0 +1,123 @@
+<div class="background-wrapper">
+  <div class="container mt-4">
+    <!-- Heading -->
+    <div class="page-title mb-4">
+      <h2>Product Catalog</h2>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="search-filter-container mb-4">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="search-container">
+            <input 
+              type="text" 
+              class="search-bar" 
+              placeholder="Search products by name..." 
+              [(ngModel)]="searchTerm" 
+              (input)="filterProducts()"
+            >
+            <span class="search-icon">
+              <i class="bi bi-search"></i>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <select 
+            class="category-filter" 
+            [(ngModel)]="selectedCategory" 
+            (change)="filterProducts()"
+          >
+            <option value="">All Categories</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Frozen Foods">Frozen Foods</option>
+            <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+            <option value="Eggs, Meat & Fish">Eggs, Meat & Fish</option>
+            <option value="Bakery, Cakes & Dairy">Bakery, Cakes & Dairy</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading products...</p>
+    </div>
+
+    <!-- Product Cards (Using Pagination) -->
+    <div class="row" *ngIf="!isLoading">
+      <div class="col-md-3 mb-4" 
+           *ngFor="let product of filteredProducts | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+        <div class="product-card">
+          <div class="product-image">
+            <img [src]="product.photoImage" alt="{{ product.name }}">
+            <div class="product-caption">{{ product.description }}</div>
+          </div>
+          <div class="product-details">
+            <h6 class="product-title">{{ product.name }}</h6>
+            <p class="product-category"><span>Category:</span> {{ product.category }}</p>
+            <p class="product-price"><span>Price:</span> {{ product.price | currency:'INR' }}</p>
+            <p class="product-stock" [ngClass]="{'low-stock': product.stock < 10}">
+              <span>Stock:</span> {{ product.stock }}
+            </p>
+          </div>
+          <div class="product-actions" *ngIf="authService.isAdmin()">
+            <button class="btn-edit" (click)="editProduct(product.productId)">Edit</button>
+            <button class="btn-delete" (click)="confirmDeleteProduct(product.productId)">Delete</button>
+          </div>
+          <div class="product-actions" *ngIf="authService.isUser()">
+            <button class="btn-cart" (click)="addToCart(product.productId)">
+              <i class="bi bi-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="row">
+      <div class="col-12 text-center mt-4">
+        <pagination-controls 
+          [autoHide]="false" 
+          [directionLinks]="true"
+          [previousLabel]="'Previous'" 
+          [nextLabel]="'Next'" 
+          (pageChange)="currentPage = $event">
+        </pagination-controls>
+      </div>
+    </div>    
+
+    <!-- No Products Message -->
+    <div *ngIf="filteredProducts.length === 0 && !isLoading" class="no-products-alert">
+      <i class="bi bi-emoji-frown"></i>
+      <p>No products available matching your criteria.</p>
+      <button class="btn-reset" *ngIf="searchTerm || selectedCategory" (click)="resetFilters()">
+        Reset Filters
+      </button>
+    </div>
+
+    <!-- Cart Reminder -->
+    <div *ngIf="filteredProducts.length > 0 && authService.isUser() && !isCartEmpty" class="cart-reminder">
+      <p class="cart-reminder-text" routerLink="/viewusercart">
+        Check your cart to complete your purchase journey!!
+      </p>
+    </div>
+
+    <!-- Custom Popup Overlay -->
+    <div class="custom-popup" *ngIf="showPopup">
+      <div class="popup-content" [ngClass]="{'confirm-popup': confirmDelete}">
+        <h4>{{ popupTitle }}</h4>
+        <p>{{ popupMessage }}</p>
+        <div *ngIf="confirmDelete" class="popup-actions">
+          <button type="button" class="btn-yes" (click)="closePopup(true)">Yes</button>
+          <button type="button" class="btn-no" (click)="closePopup(false)">No</button>
+        </div>
+        <div *ngIf="!confirmDelete" class="popup-actions">
+          <button type="button" class="btn-ok" (click)="closePopup()">OK</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

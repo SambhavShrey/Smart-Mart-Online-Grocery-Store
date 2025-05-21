@@ -1,0 +1,11 @@
+<div class="modal" *ngIf="displayPopup">
+    <div class="modal-content">
+      <h2>Confirm Logout</h2>
+      <p>Are you sure you wanna leave?</p>
+      <div class="modal-button-group">
+        <button class="confirm-btn" (click)="onConfirm()">Yes</button>
+        <button class="cancel-btn" (click)="onCancel()">No</button>
+      </div>
+    </div>
+  </div>
+  

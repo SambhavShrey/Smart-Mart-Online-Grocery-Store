@@ -1,0 +1,48 @@
+<!-- Full-page background wrapper -->
+<div class="background-wrapper">
+  <!-- Centered form container -->
+  <div class="form-container">
+    <h2 class="text-center mb-4" style="color: #6a1b9a;">Place Order</h2>
+    <form [formGroup]="orderForm" (ngSubmit)="placeOrder()">
+      <div class="mb-3">
+        <label for="shippingAddress" class="form-label">
+          Shipping Address <span style="color: red;">*</span>
+        </label>
+        <input
+          type="text"
+          id="shippingAddress"
+          name="shippingAddress"
+          formControlName="shippingAddress"
+          class="form-control"
+          placeholder="Enter your shipping address"
+        />
+        <div *ngIf="orderForm.controls.shippingAddress.invalid && (orderForm.controls.shippingAddress.touched || orderForm.controls.shippingAddress.dirty)" class="text-danger">
+          <small *ngIf="orderForm.controls.shippingAddress.errors?.required">
+            Shipping address is required.
+          </small>
+        </div>
+      </div>
+
+      <!-- Error message for empty cart -->
+      <div *ngIf="cartItems.length === 0" class="text-danger mb-3">
+        <small>Your cart is empty. Please add items before placing an order.</small>
+      </div>
+  
+      <button type="submit" [disabled]="orderForm.invalid || cartItems.length === 0" class="btn w-100">
+        Place Order
+      </button>
+      <button type="button" (click)="clearCart()" class="btn w-100 mt-2">
+        Clear Cart
+      </button>
+    </form>
+  </div>
+</div>
+  
+<!-- Custom Popup Overlay -->
+<div class="custom-popup" *ngIf="showPopup">
+  <div class="popup-content">
+    <h4>{{ popupTitle }}</h4>
+    <p>{{ popupMessage }}</p>
+    <button type="button" class="btn" (click)="closePopup()">OK</button>
+  </div>
+</div>

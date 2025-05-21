@@ -1,0 +1,122 @@
+<div class="container mt-5 order-container">
+  <!-- New title -->
+  <h2 class="text-center title-header animate__animated animate__fadeInDown">
+    Order Overview
+  </h2>
+  
+  <!-- Orders Table when orders exist -->
+  <div *ngIf="orders && orders.length > 0; else noOrdersTemplate" class="order-table-wrapper animate__animated animate__fadeInUp">
+    <table class="table table-hover custom-table">
+      <thead class="custom-table-header text-center">
+        <tr>
+          <th>Order ID</th>
+          <th>User ID</th>
+          <th>Shipping Address</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders | paginate: { itemsPerPage: 2, currentPage: page }">
+          <td class="text-center">{{ order.orderId }}</td>
+          <td class="text-center">{{ order.user.userId }}</td>
+          <td>{{ order.shippingAddress }}</td>
+          <td class="fw-bold" [ngClass]="{
+                'text-success': order.status === 'ACCEPTED',
+                'text-danger': order.status === 'REJECTED',
+                'text-warning': order.status === 'PENDING'
+              }">
+            {{ order.status }}
+          </td>
+          <td class="text-center">
+            <button [disabled]="order.status !== 'PENDING'" class="btn btn-success btn-sm me-2" (click)="openConfirmationPopup(order.orderId, 'ACCEPTED')">
+              Accept
+            </button>
+            <button [disabled]="order.status !== 'PENDING'" class="btn btn-danger btn-sm" (click)="openConfirmationPopup(order.orderId, 'REJECTED')">
+              Reject
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+    </div>
+  
+  <!-- Template to show when there are no orders -->
+  <ng-template #noOrdersTemplate>
+    <div class="popup-overlay">
+      <div class="popup-content error animate__animated animate__shakeX">
+        <h4>Error</h4>
+        <p>No orders available.</p>
+        <button class="btn btn-secondary" (click)="closeErrorPopup()">Close</button>
+      </div>
+    </div>
+  </ng-template>
+  
+  <!-- Order Details Section -->
+  <div *ngIf="selectedOrder" class="order-details card shadow mt-5 animate__animated animate__fadeIn">
+    <div class="card-header bg-light-purple text-dark">
+      <h3 class="mb-0">Order Details</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Order ID:</strong> {{ selectedOrder.orderId }}</p>
+          <p><strong>User ID:</strong> {{ selectedOrder.userId }}</p>
+          <p><strong>Shipping Address:</strong> {{ selectedOrder.shippingAddress }}</p>
+          <p><strong>Total Amount:</strong> {{ selectedOrder.totalAmount | currency:'INR' }}</p>
+          <p><strong>Quantity:</strong> {{ selectedOrder.quantity }}</p>
+          <p>
+            <strong>Status:</strong>
+            <span class="fw-bold" [ngClass]="{
+                  'text-success': selectedOrder.status === 'ACCEPTED',
+                  'text-danger': selectedOrder.status === 'REJECTED',
+                  'text-warning': selectedOrder.status === 'PENDING'
+                }">
+              {{ selectedOrder.status }}
+            </span>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h5>Products:</h5>
+          <ul class="list-unstyled">
+            <li *ngFor="let product of selectedOrder.products" class="product-item">
+              <strong>{{ product.name }}</strong> - {{ product.description }}<br>
+              <img [src]="product.photoImage" [alt]="product.name" class="img-thumbnail product-img" style="height: 80px; width: 80px;">
+              <p class="mb-1">
+                (Price: {{ product.price | currency:'INR' }}, Category: {{ product.category }})
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation Popup Modal -->
+<div *ngIf="showConfirmationPopup" class="popup-overlay">
+  <div class="popup-content confirm animate__animated animate__zoomIn">
+    <h4>{{ confirmationPopupTitle }}</h4>
+    <p>{{ confirmationPopupMessage }}</p>
+    <div class="d-flex justify-content-end mt-3">
+      <button class="btn btn-primary me-2" (click)="confirmUpdate()">Confirm</button>
+      <button class="btn btn-secondary" (click)="closeConfirmationPopup()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Error Popup Modal for update errors -->
+<div *ngIf="showErrorPopup" class="popup-overlay">
+  <div class="popup-content error animate__animated animate__shakeX">
+    <h4>{{ errorPopupTitle }}</h4>
+    <p>{{ errorPopupMessage }}</p>
+    <div class="d-flex justify-content-end mt-3">
+      <button class="btn btn-secondary" (click)="closeErrorPopup()">Close</button>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,18 @@
+/* Wrapper to contain the navbar and hide any overflow */
+.navbar-wrapper {
+    overflow-x: hidden;
+  }
+
+  /* Custom styling for a smaller navbar */
+  .custom-navbar {
+    padding: 0.5rem 1rem;      /* Adjust as needed */
+    font-size: 0.9rem;        /* Smaller font-size */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center center;
+  }
+
+  /* Magnify effect on hover */
+  .custom-navbar:hover {
+    transform: scale(1.03);  /* Change scale factor if needed */
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+  }

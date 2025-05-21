@@ -1,0 +1,144 @@
+/* Professional Page Styling with Background Image */
+.user-feedback-container {
+  min-height: 100vh;
+  padding: 40px;
+  background:  
+    url('https://media-hosting.imagekit.io/af66ad46d40d4b76/aquatint%20print%20of%20a%20%20board%20with%20feedbacks%20written_%2003-05-2025%20at%2015-09-16.jpeg?Expires=1840873235&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=p5iRiJaSnyF-tlbkO1VL6AyqfFzKYnNTiiszWs26F2RwmWspKPQ1sVGuYDeddy7PwdOOqy-NWdgGNHO3fU5v47N9hmar006Y2gaexVMnAthreW-AgfP~O~VSrPHvGcg4-NlPLD7u1a0HFHmVuXedWUIo9sigTMmk3cWiXQ6oTSPShdwPYcQA2saFImFKfbWLEoJWRKOEu1rZhaagTpfawW9qU2d~VDylHgCpNGGfxpRbGXnN8dMVv82J~n7DosfzShoef5RY9~BnkV4SRn9xqAaIc63Sr5HDSXH8lQHzUjI0N~XkVbcKBZ51QskRkJ5uXELXRN7I6WZAx5ZGca4ZfA__') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Remove Blur Overlay */
+.user-feedback-container::before {
+  display: none; /* No blur or transparency */
+}
+
+/* Main Heading Styling */
+.feedback-main-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1b1a1a; /* Rustic brown */
+  text-align: center;
+  font-family: 'Cinzel', serif; /* Vintage serif font */
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+
+/* Refined Table Styling - Rustic Brown Theme */
+.feedback-table {
+  animation: fadeInTable 1s ease-in-out;
+  background: linear-gradient(to right, #8B4513, #A0522D); /* Rustic brown blend */
+  color: #212121;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Table Headers - Dark Brown */
+.feedback-table th {
+  background-color: #5C4033; /* Dark brown */
+  color: white;
+  font-weight: bold;
+  padding: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #8B4513;
+}
+
+/* Table Cells */
+.feedback-table td {
+  padding: 16px;
+  background: rgba(245, 222, 179, 0.95); /* Light brown */
+  border-bottom: 2px solid #A0522D;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.feedback-table tbody tr:hover {
+  background-color: rgba(210, 180, 140, 0.6); /* Soft brown hover */
+  transform: scale(1.02);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Dynamic Colors for Stars Based on Rating */
+.feedback-table .stars {
+  font-size: 1.5rem;
+  color: lightgray;
+}
+
+/* Color-coded Stars */
+.feedback-table .stars .selected.one { color: #D50000; } /* Bright Red */
+.feedback-table .stars .selected.two { color: #E53935; } /* Soft Red */
+.feedback-table .stars .selected.three { color: #FFD700; } /* Gold */
+.feedback-table .stars .selected.four { color: #76FF03; } /* Light Green */
+.feedback-table .stars .selected.five { color: #1B5E20; } /* Deep Green */
+
+/* Smooth transition effect */
+.feedback-table .stars .selected {
+  transition: color 0.3s ease;
+}
+
+/* Smooth Fade-in Animations */
+@keyframes fadeInTable {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Modal Styling */
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeInModal 0.5s ease-in-out;
+}
+
+.modal-content {
+  background-color: #fff; /* White background for modal content */
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.5); /* Green shadow */
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-buttons button {
+  width: 45%;
+}
+
+/* Smooth Fade-in Animation for Overlay */
+@keyframes fadeInOverlay {
+  to { opacity: 1; }
+}
+
+/* Slide-in Animation for Modal Content */
+@keyframes slideInModal {
+  to { transform: translateY(0); }
+}

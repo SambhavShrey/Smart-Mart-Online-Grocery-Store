@@ -1,0 +1,120 @@
+<nav class="navbar navbar-expand-lg custom-navbar animate__animated animate__fadeInDown">
+  <div class="container-fluid">
+    <!-- Home link (brand) -->
+    <a class="navbar-brand" routerLink="/">
+      <video class="home-icon" autoplay loop muted playsinline>
+        <source src="https://cdn-icons-mp4.flaticon.com/512/15164/15164872.mp4" type="video/mp4">
+        <track label="English" kind="captions" srclang="en" src="path-to-captions-en.vtt" default>
+        Your browser does not support the video tag.
+      </video>
+      Smart Mart
+    </a>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <!-- Navbar toggler -->
+    <button class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar content -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <!-- Navigation Links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="authService.isAdmin()">
+          <a class="nav-link animated-link" routerLink="/addproduct">Add Product</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isLoggedUser()">
+          <a class="nav-link animated-link" routerLink="/viewproduct">View Product</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isUser()">
+          <a class="nav-link animated-link" routerLink="/viewuserorders">My Orders</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isAdmin()">
+          <a class="nav-link animated-link" routerLink="/adminvieworders">All Orders</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isUser()">
+          <a class="nav-link animated-link" routerLink="/add-feedback">Add Feedback</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isUser()">
+          <a class="nav-link animated-link" routerLink="/my-feedbacks">My Feedbacks</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isAdmin()">
+          <a class="nav-link animated-link" routerLink="/view-feedbacks">View Feedbacks</a>
+        </li>
+      </ul>
+
+      <!-- Cart Icon -->
+      <a *ngIf="authService.isUser()" 
+         class="cart-icon animated-link" 
+         routerLink="/viewusercart"
+         aria-label="Shopping Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+      </a>
+
+      <!-- User Profile Section -->
+      <button class="profile-button" 
+              (click)="openProfileSelector()"
+              aria-label="Open Profile Menu">
+        <span class="user-name">{{ userName || 'User' }}</span>
+        <img [src]="profilePic" 
+        alt="Profile" 
+          class="profile-pic" />
+      </button>
+
+      <!-- Login/Register/Logout Buttons -->
+      <div class="auth-buttons">
+        <button *ngIf="!authService.isLoggedUser()" 
+                class="btn btn-outline-light me-2 animate__animated animate__fadeIn" 
+                routerLink="/login">
+          Login
+        </button>
+        <button *ngIf="!authService.isLoggedUser()" 
+                class="btn btn-outline-success me-2 animate__animated animate__fadeIn" 
+                routerLink="/register">
+          Register
+        </button>
+        <button *ngIf="authService.isLoggedUser()" 
+                class="btn btn-danger animate__animated animate__fadeIn" 
+                (click)="logout()">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Profile Selector Modal -->
+<dialog class="modal" 
+     [class.show]="showProfileSelector" 
+     tabindex="-1" 
+     aria-labelledby="profileSelectorTitle" 
+     [attr.aria-hidden]="!showProfileSelector">
+  <div class="modal-dialog">
+    <div class="modal-content animate__animated animate__zoomIn">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileSelectorTitle">Select Profile Picture</h5>
+        <button type="button" 
+                class="btn-close" 
+                aria-label="Close" 
+                (click)="closeProfileSelector()">
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="profile-options">
+          <button *ngFor="let pic of availablePics" 
+                  class="profile-option-button" 
+                  (click)="selectProfilePic(pic)"
+                  [attr.aria-label]="'Select profile picture ' + pic">
+            <img [src]="pic" alt="Profile Option" class="profile-option" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>

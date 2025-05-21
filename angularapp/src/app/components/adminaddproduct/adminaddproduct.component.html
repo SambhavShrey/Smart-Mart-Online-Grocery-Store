@@ -1,0 +1,190 @@
+<!-- Full-page background wrapper -->
+<div class="background-wrapper animate__animated animate__fadeIn">
+  <!-- Centered form container with animate.css fadeInUp effect -->
+  <div class="form-container animate__animated animate__fadeInUp">
+    <h2 class="text-center mb-4" style="color: rgb(255, 123, 0);">
+      {{ isEdited ? 'Edit Product' : 'Add Product' }}
+    </h2>
+    <form [formGroup]="addProductForm" (ngSubmit)="createProduct()">
+      <div class="mb-3">
+        <label for="name" class="form-label">
+          Product Name<span style="color: red;">*</span>
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          formControlName="name"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            addProductForm.controls.name?.invalid &&
+            (addProductForm.controls.name?.touched ||
+             addProductForm.controls.name?.dirty)
+          "
+          class="text-danger"
+        >
+          <small
+            *ngIf="addProductForm.controls.name.errors?.required"
+            >Product Name is required.</small
+          >
+          <small
+            *ngIf="addProductForm.controls.name.errors?.pattern"
+            >Product Name can contain only alphabets and digits.</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">
+          Description<span style="color: red;">*</span>
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          formControlName="description"
+          class="form-control"
+        ></textarea>
+        <div
+          *ngIf="
+            addProductForm.controls.description?.invalid &&
+            (addProductForm.controls.description?.touched ||
+             addProductForm.controls.description?.dirty)
+          "
+          class="text-danger"
+        >
+          <small
+            *ngIf="addProductForm.controls.description.errors?.required"
+            >Description is required.</small
+          >
+          <small
+            *ngIf="addProductForm.controls.description.errors?.pattern"
+            >Description limit cannot exceed 100 characters.</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">
+          Price<span style="color: red;">*</span>
+        </label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          formControlName="price"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            addProductForm.controls.price?.invalid &&
+            (addProductForm.controls.price?.touched ||
+             addProductForm.controls.price?.dirty)
+          "
+          class="text-danger"
+        >
+          <small *ngIf="addProductForm.controls.price.errors?.required"
+            >Price is required.</small
+          >
+          <small *ngIf="addProductForm.controls.price.errors?.min"
+            >Price should be positive.</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="stock" class="form-label">
+          Stock<span style="color: red;">*</span>
+        </label>
+        <input
+          type="number"
+          id="stock"
+          name="stock"
+          formControlName="stock"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            addProductForm.controls.stock?.invalid &&
+            (addProductForm.controls.stock?.touched ||
+             addProductForm.controls.stock?.dirty)
+          "class="text-danger">
+          <small *ngIf="addProductForm.controls.stock.errors?.required">Stock is required.</small>
+          <small *ngIf="addProductForm.controls.stock.errors?.min">Stock cannot be negative.</small>
+          <small *ngIf="addProductForm.controls.stock.errors?.pattern">Stock can be only in digits.</small>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">
+          Category<span style="color: red;">*</span>
+        </label>
+        <select
+          id="category"
+          name="category"
+          formControlName="category"
+          class="form-select"
+        >
+          <option value="Beverages">Beverages</option>
+          <option value="Frozen Foods">Frozen Foods</option>
+          <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+          <option value="Eggs, Meat & Fish">Eggs, Meat & Fish</option>
+          <option value="Bakery, Cakes & Dairy">Bakery, Cakes & Dairy</option>
+        </select>
+        <div
+          *ngIf="
+            addProductForm.controls.category?.invalid &&
+            (addProductForm.controls.category?.touched ||
+             addProductForm.controls.category?.dirty)
+          "
+          class="text-danger"
+        >
+          <small *ngIf="addProductForm.controls.category.errors?.required"
+            >Category is required.</small
+          >
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="photoImage" class="form-label">Product Photo</label>
+        <input
+          type="file"
+          id="photoImage"
+          name="photoImage"
+          accept=".jpg,.png,.jpeg"
+          (change)="onFileChange($event, 'photoImage')"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            addProductForm.get('photoImage')?.invalid &&
+            addProductForm.get('photoImage')?.touched
+          "
+          class="text-danger"
+        >
+          Product photo is required.
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn w-100"
+        style="background-color: rgb(255, 123, 0); color: white;"
+      >
+        {{ isEdited ? 'Update Product' : 'Add Product' }}
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Custom Popup Overlay with animate.css zoomIn effect -->
+<div class="custom-popup animate__animated animate__zoomIn" *ngIf="showPopup">
+  <div class="popup-content">
+    <h4>{{ popupTitle }}</h4>
+    <p>{{ popupMessage }}</p>
+    <button type="button" class="btn btn-primary" (click)="closePopup()">
+      OK
+    </button>
+  </div>
+</div>

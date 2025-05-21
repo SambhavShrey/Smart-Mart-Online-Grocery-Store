@@ -1,0 +1,79 @@
+/* Main container styling */
+.order-container {
+    background-color: rgba(255, 255, 255, 0.97);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title styling (Order Overview) */
+  .title-header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ff5733; /* New color for Order Overview */
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Custom table styling */
+  .custom-table {
+    background-color: #f9f5ff;
+    border-radius: 8px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    vertical-align: middle;
+    padding: 15px;
+    border: none;
+  }
+  
+  .custom-table-header {
+    background-color: #8a2be2;
+    color: #f42121;
+    font-weight: bold;
+  }
+  
+  .custom-table tr {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-table tr:hover {
+    background-color: #e9e9ff;
+  }
+  
+  /* Popup overlay styling */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(137, 43, 226, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+  }
+  
+  .popup-content {
+    margin: 0;
+    background: #fcf8ff;
+    border: 2px solid #eae8ec;
+    border-radius: 12px;
+    padding: 25px;
+    min-width: 320px;
+    box-shadow: 0 0 15px rgba(202, 202, 202, 0.5);
+  }
+  .pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  

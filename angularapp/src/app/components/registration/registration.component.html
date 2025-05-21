@@ -1,0 +1,125 @@
+<div 
+  class="register-page d-flex align-items-center justify-content-center"
+  [ngStyle]="{'background-image': 'url(' + backgroundUrl + ')'}"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card register-card shadow">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Register</h3>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <!-- Email Field -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  formControlName="email" 
+                  class="form-control" 
+                  placeholder="Enter your email"
+                />
+                <div *ngIf="submitted && f.email.errors" class="text-danger mt-1">
+                  <div *ngIf="f.email.errors.required">Email is required.</div>
+                  <div *ngIf="f.email.errors.email">Please provide a valid email address.</div>
+                </div>
+              </div>
+
+              <!-- Password Field -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input 
+                  type="password" 
+                  id="password" 
+                  formControlName="password" 
+                  class="form-control" 
+                  placeholder="Enter your password"
+                />
+                <div *ngIf="submitted && f.password.errors" class="text-danger mt-1">
+                  <div *ngIf="f.password.errors.required">Password is required.</div>
+                  <div *ngIf="f.password.errors.pattern">
+                    Password must be 8-20 characters long, and include at least one uppercase letter,
+                    one lowercase letter, one number, and one special character.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Confirm Password Field -->
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input 
+                  type="password" 
+                  id="confirmPassword" 
+                  formControlName="confirmPassword" 
+                  class="form-control" 
+                  placeholder="Re-enter your password"
+                />
+                <div *ngIf="submitted && (f.confirmPassword.errors || registerForm.errors?.passwordMismatch)" class="text-danger mt-1">
+                  <div *ngIf="f.confirmPassword.errors?.required">Confirm Password is required.</div>
+                  <div *ngIf="registerForm.errors?.passwordMismatch">Passwords do not match.</div>
+                </div>
+              </div>
+
+              <!-- Username Field -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input 
+                  type="text" 
+                  id="username" 
+                  formControlName="username" 
+                  class="form-control" 
+                  placeholder="Enter your username"
+                />
+                <div *ngIf="submitted && f.username.errors" class="text-danger mt-1">
+                  <div *ngIf="f.username.errors.required">Username is required.</div>
+                  <div *ngIf="f.username.errors.maxlength">
+                    Username cannot exceed 50 characters.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mobile Number Field -->
+              <div class="mb-3">
+                <label for="mobileNumber" class="form-label">Mobile Number</label>
+                <input 
+                  type="text" 
+                  id="mobileNumber" 
+                  formControlName="mobileNumber" 
+                  class="form-control" 
+                  placeholder="Enter your mobile number"
+                />
+                <div *ngIf="submitted && f.mobileNumber.errors" class="text-danger mt-1">
+                  <div *ngIf="f.mobileNumber.errors.required">Mobile number is required.</div>
+                  <div *ngIf="f.mobileNumber.errors.pattern">
+                    Mobile number must be exactly 10 digits.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Registration and Reset Buttons -->
+              <button type="submit" class="btn btn-primary w-100">Register</button>
+              <button type="button" class="btn btn-secondary w-100 mt-2" (click)="onReset()">Reset</button>
+            </form>
+
+            <!-- Login Link -->
+            <!-- Login Link -->
+           <div class="link-container text-center mt-3">
+                 <a [routerLink]="'/login'" class="login-link">
+                   Already have an account? Login here.
+                 </a>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Popup Overlay -->
+<div class="custom-popup" *ngIf="showPopup">
+  <div class="popup-content">
+    <h4>{{ popupTitle }}</h4>
+    <p>{{ popupMessage }}</p>
+    <button type="button" class="btn btn-primary" (click)="closePopup()">OK</button>
+  </div>
+</div>

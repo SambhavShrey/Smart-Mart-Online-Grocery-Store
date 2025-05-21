@@ -1,0 +1,43 @@
+<div class="admin-feedback-container">
+  <h2>All User Feedbacks</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Feedback Table with Pagination -->
+  <table *ngIf="feedbacks.length > 0" class="feedback-table">
+    <thead>
+      <tr>
+        <th>Feedback ID</th>
+        <th>User ID</th>
+        <th>User Email</th>
+        <th>Message</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feedback of getPaginatedFeedbacks()">
+        <td>{{ feedback.feedbackId }}</td>
+        <td>{{ feedback.user.userId }}</td>
+        <td>{{ feedback.user.email }}</td>
+        <td>{{ feedback.message }}</td>
+        <td>
+          <span class="rating-number">{{ feedback.rating }}/5</span>
+          <span class="stars">
+            <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+              <span [class]="getStarClass(i, feedback.rating)">★</span>
+            </ng-container>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button class="btn btn-primary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span class="current-page">Page {{ currentPage }} of {{ getTotalPages() }}</span>
+    <button class="btn btn-primary" (click)="nextPage()" [disabled]="currentPage === getTotalPages()">Next</button>
+  </div>
+</div>

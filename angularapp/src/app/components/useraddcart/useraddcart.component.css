@@ -1,0 +1,146 @@
+/* Fade-in animation for the entire background content */
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide-in animation for the form container */
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Bounce-in animation for the popup content */
+@keyframes bounceInPopup {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Full-page background wrapper using your original background image URL */
+.background-wrapper {
+  background: 
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url('https://img.freepik.com/free-psd/shopping-vertical-background_23-2150409471.jpg?t=st=1745916056~exp=1745919656~hmac=b28c28bbad55cfcce16e374be6914fd46d10658b128606b8fd287bda640355b8&w=740')
+    no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  animation: fadeInContent 1s ease-out;
+}
+
+/* Centered form container with slide-in animation */
+.form-container {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 50%;
+  animation: slideInFromTop 0.8s ease-out;
+}
+
+/* Form headings and labels */
+.form-container h2,
+.form-container label {
+  color: #000;
+}
+
+/* Button for placing the order, using a light purple theme */
+.btn {
+  background-color: #ba68c8;   /* Light purple background */
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #ab47bc;   /* Darker shade on hover */
+  transform: scale(1.03);
+}
+
+/* Custom Popup Overlay Styles with Light Purple Theme */
+.custom-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);  /* Dark overlay for focus */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.popup-content {
+  background-color: #f3e5f5;  /* Light purple background */
+  border: 2px solid #ba68c8;  /* Light purple border */
+  border-radius: 5px;
+  padding: 20px;
+  min-width: 300px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  animation: bounceInPopup 0.6s ease-out;
+}
+
+.popup-content h4 {
+  color: #6a1b9a;  /* Dark purple heading text */
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  color: #000;    /* Black text */
+  margin-bottom: 20px;
+}
+
+/* Popup button updated to light purple */
+.popup-content button {
+  background-color: #ba68c8;   /* Light purple button background */
+  border: 1px solid #ba68c8;
+  color: #fff;                /* White text */
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup-content button:hover {
+  background-color: #ab47bc;   /* Slightly darker on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .form-container {
+    padding: 1.5rem;
+    width: 90%;
+  }
+}

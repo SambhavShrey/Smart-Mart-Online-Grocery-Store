@@ -1,0 +1,191 @@
+/* Navbar Container */
+.custom-navbar {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5));
+  backdrop-filter: blur(8px);
+  padding: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Brand styling */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #ff5733;
+  transform: scale(1.05);
+}
+
+/* Home icon */
+.home-icon {
+  height: 40px;
+  width: 40px;
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.home-icon:hover {
+  transform: rotate(360deg);
+}
+
+/* Cart Icon */
+.cart-icon {
+  position: relative;
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+  color: #ff5733;
+  transform: scale(1.1);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff5733;
+  color: white;
+  border-radius: 50%;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  animation: bounce 0.5s ease infinite;
+}
+
+/* Navigation Links */
+.nav-link {
+  position: relative;
+  color: #ffffff;
+  font-size: 1rem;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff5733;
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff5733, #ff8a65);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: right;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Profile Button */
+.profile-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-button:hover {
+  transform: scale(1.05);
+}
+
+.user-name {
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+.profile-pic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+}
+
+.profile-pic:hover {
+  border-color: #ff5733;
+  transform: rotate(360deg);
+}
+
+/* Modal Styling */
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.profile-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.profile-option-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-option-button:hover {
+  transform: scale(1.1);
+}
+
+.profile-option {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-nav {
+    margin-top: 1rem;
+  }
+  
+  .nav-link {
+    margin: 0.5rem 0;
+  }
+  
+  .profile-button {
+    margin: 1rem 0;
+  }
+}

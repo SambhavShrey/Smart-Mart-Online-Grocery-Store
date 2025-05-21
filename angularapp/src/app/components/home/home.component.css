@@ -1,0 +1,444 @@
+/* Parent container holds both slides and content */
+.home-container {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #ECEFCA; /* fallback to off-white */
+}
+
+/* Background slides */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  /* Smooth transition with ease-in-out */
+  animation: fade 12s ease-in-out infinite;
+}
+
+/* First background image (visible at 0s) */
+.slide:nth-child(1) {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('https://media-hosting.imagekit.io/08835e28d8304d54/A%20girl%20and%20her%20loyal%20dog,%20high%20on%20a%20cozy%20rooftop%20under%20an%20endless%20starry%20sky,%20embark%20on%20a%20whimsical%20%2003-05-2025%20at%2015-13-57.jpeg?Expires=1840873520&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=m5nyEypGFu39WtQgO-3YLtRUM406VdW4rpBzY2V8WYo6u0BybyIcVSqYtlueV8~SFtSW9uwDzlzp09qCbbA~0OoJVd2~LhNQ6PfIPikiYPaT6oCNO9I2X9UByI-mn46fMqD5~M9-S4HlRj7~W2EFjk9IO3T5J25xh4krboKh~NoEYB9AexsUSdOJ~AYOL3nv4uWy2cozR38CscFKdTZVUcv6sQzbw8J2h0u4cOGJs6QZZB2EjFP24CTwMXE2njsEBr94dfju8g2ZRpXk~NoktkLcYO0aUi5SkNvmWXxVVo-AP2G7kZ62Pc6XFYV0g4DH~u1FgH9RLRA0BHhiGbFamw__');
+  animation-delay: 0s;
+}
+
+/* Second background image (visible after 4s) */
+.slide:nth-child(2) {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('https://media-hosting.imagekit.io/5b4abe24e9f3410e/A%20solitary%20shopper%20wanders%20through%20a%20local%20market%20after%20closing%20time%2003-05-2025%20at%2015-16-07.jpeg?Expires=1840873652&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=y5hHIAbmM-mOV9LfHMZweYDQxLA-jY6A6eks4bISepa1AJaGSx1escKgcBan9EbtQH12N383xg-P0drSaaQPfF9BnEuHZVakmdgZ97kSbYGoMHt7fzJddIMjBg991tANfDfC6m138Ltes0X2oyOYbQltvAv8ba1icxcDr1ysFZ1BC5Bu8qCRxjn~~MdEDQPq7LFovEjXSaLo2vbza9O5sh9HAAEFW3xVi9T~4oEmOGKpOMZPc7T2eOkemRLJtaoT7VvGPXjxu7ctmtJAAVh2sjAsZylQBPligx6~iIHbSACiYwwYcr11JVTXsK8lLeA7jvmxa4R36G-iRU3DrKmgVQ__');
+  animation-delay: 4s;
+}
+
+/* Third background image (visible after 8s) */
+.slide:nth-child(3) {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('https://media-hosting.imagekit.io/d6c1dbb42d8545ec/Urban%20Rhythm%20and%20the%20Midnight%20Run%20During%20a%20hectic%20week%20in%20the%20city,%20two%20friends%20set%20out%20for%20a%20grocer%2003-05-2025%20at%2015-18-19.jpeg?Expires=1840873778&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=kCDFFfBij6Cp6y4FmtITOB00U41qigoJqXwne7L4hDrTwo3boR68jVWQH6bgLUrEb5eQiYZQiOR~MDBagnWN~~ocCW5p8ZNUx0baxVZBPW6iFNgb-xWkVmhzMwrQadhGTFXokd9-GIhb1wWep7s99ZzMI6wNlFOgATtBqXMNVGwNECs-j3v5lSmQbFdn9uPLclf-uVO6RePO1f4aKdtWcwvHVRkwwzeaY~HeO7NQDEd1VWq7JH2807YxX4PVNROc6rSMhQFTu3BcD1Cl7n3b2W7Kf3j4T01o0cV5uLOmVLUP~lRgpRYTrNCnpn0KkCuTIDKopqvGGEhbwS5-blCV6w__');
+  animation-delay: 8s;
+}
+
+/* Fouth background image (visible after 8s) */
+.slide:nth-child(4) {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('https://media-hosting.imagekit.io/49035e0d904347a2/The%20Forgotten%20Cart%20In%20a%20bustling%20neighborhood%20market,%20a%20lone%20wanderer%20stumbles%20upon%20a%20shopping%20cart%20%2003-05-2025%20at%2015-19-46.jpeg?Expires=1840873864&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=B9SSnkCcE~8xf4-7CdunSg28IsqyiYaW7V6wUTjYUcS0DjmvZiGbYvFnnf6PcmRNSc1zTts58Ypvy9kNbJz~FT3k4XmlEtCJMNyqI6vPZ7gp~b1~UZGfk0bGyzyE4T~3fzFOO3ZOMg~mMf9SxDiONBLoa8xFflw-MYJTTdrVizPhSBnNSBmKmWQVnmLyRIjwV9XohJj-XR8TLD9A74Q2KGRWGSH6MDmcK6-pmoM0Q1wrRFz64iWHq75spVh38tWh9oAuo-yQ6coszMR2iDqfbJZlFcrFOz3FxXtgnuWqhBTlNZu2sQ-QfC3L0Q7euiUQETp-ERmyV1BJzOyrMcrfCQ__');
+  animation-delay: 12s;
+}
+
+/* Fifth background image (visible after 8s) */
+.slide:nth-child(5) {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('https://media-hosting.imagekit.io/7652f4f0c69e4140/A%20Culinary%20Quest%20for%20the%20Perfect%20Ingredient%20A%20passionate%20cook%20embarks%20on%20a%20mission%20to%20track%20down%20the%2003-05-2025%20at%2015-20-58.jpeg?Expires=1840873938&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=xfbfpXHjqnuiAcZGdJ-I7Nx~aJBRwITOVHzaAUnS~aizJSKOPBl2W1SIiS9NmkLIQFotcZx6FO~y4AlePAeA-xa-PLYFcuzqYH~E~KmBxjJi4tL1YdrUTGVaLm2yfK7u29em2EoWJGNOJaD4-14MYpPsGa8PU~ZnOniKEi2TbUkbjKQIR7Am9wf2PivyhyKRDZvsypC9z-AiYUy3wjpAQyjPFxbYNG-cvUf0aGRoacqQtX29yQd-ZGjz-48dFUbHxMHd44cmpt64p2MIT9GodL7s44GEFw-fDhB8qX67s8d-tt9AfDk28sH3a1VLDzpJfE8PrZ5YGpY17Wh0ONaQqw__');
+  animation-delay: 16s;
+}
+
+/* Sixth background image (visible after 8s) */
+.slide:nth-child(6) {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('https://media-hosting.imagekit.io/8fdad938b4da4c90/Behind%20the%20Checkout%20Line%20Amid%20the%20steady%20hum%20of%20a%20neighborhood%20grocery%20store,%20a%20day%20worker%20finds%20une%2003-05-2025%20at%2015-21-52.jpeg?Expires=1840873990&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gGNeDriGdiAYxSUuxpSDmyyR2FYIfJHbjN7kFkI0nRshdVhKIiM5aiRhTmV-fb6ARSsSvad6Y-le0r4karnmgrGVoE5gQVfNJ2rE9xDV7Pse-uNL2szvKGfMhgd52JJuaHgmKDARtQner2dwSe3HbVGACRi61FwQgFZDQVnMYJj~Jk8~0ro86~WBxbl94rt6rx2Yy7qNAvl9tH0iRA21Ch8tuMilswbIWFC7s7W~YDi41nEErH~Q7j89FPga~d3~7vyha4dcTE3upi-N9bxCuK~cQfh7rT~00ZaG2wZ~mlhCfhPifQMFE2e1bpaXBeQZguqGUMEmkYpTSHzOiCrW3w__');
+  animation-delay: 20s;
+}
+
+/* Updated keyframes for a smooth crossfade */
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Wrap your main content to ensure it appears above the background slides */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ----------------------------------------- */
+/* Header */
+/* ----------------------------------------- */
+.site-header {
+  background: linear-gradient(135deg, #213448, #547792);
+  padding: 20px;
+  color: #ECEFCA;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.brand-text p {
+  margin: 5px 0 0;
+  font-size: 1.2em;
+}
+
+.cta-button {
+  background-color: #547792;
+  color: #ECEFCA;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  background-color: #213448;
+}
+
+/* ----------------------------------------- */
+/* Features Section */
+/* ----------------------------------------- */
+.features {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 20px;
+  padding: 60px 20px;
+  margin: 40px auto;
+  max-width: 1200px;
+  background-color: transparent;
+}
+
+.feature-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: rgba(236, 239, 202, 0.7); /* using off-white (#ECEFCA) as a soft background */
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  margin: 10px 0;
+  font-size: 1.5em;
+  color: #213448;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 1em;
+  color: #547792;
+}
+
+/* ----------------------------------------- */
+/* Products Section */
+/* ----------------------------------------- */
+.products {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.section-header h2 {
+  color: #213448;
+  font-size: 2em;
+}
+
+.view-all {
+  background-color: #547792;
+  color: #ECEFCA;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-all:hover {
+  background-color: #213448;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.product-card {
+  background: #ECEFCA;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  color: #213448;
+  margin: 15px;
+}
+
+.product-card p {
+  color: #547792;
+  margin: 0 15px 15px;
+}
+
+/* ----------------------------------------- */
+/* Guides Section */
+/* ----------------------------------------- */
+.guides {
+  padding: 60px 0;
+  background-color: transparent;
+}
+
+.guides .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #213448;
+  padding-bottom: 10px;
+}
+
+.guides h2 {
+  font-weight: 700;
+  color: #213448;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.guides .guides-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.guide-card {
+  margin-bottom: 16px;
+  background-color: rgba(236, 239, 202, 0.7);
+  border-radius: 8px;
+  box-shadow: none;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.guide-button {
+  width: 100%;
+  background-color: transparent;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #213448;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.guide-button.active {
+  background-color: rgba(84, 119, 146, 0.7); /* using adjusted version of #547792 with transparency */
+  color: #ECEFCA;
+}
+
+.icon {
+  margin-left: 8px;
+}
+
+.guide-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  padding: 0 16px;
+}
+
+.guide-content.open {
+  max-height: 300px;
+  opacity: 1;
+  padding: 16px;
+}
+
+/* ----------------------------------------- */
+/* Footer */
+/* ----------------------------------------- */
+.site-footer {
+  background-color: #213448;
+  color: #ECEFCA;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* ----------------------------------------- */
+/* Custom Popup Modal */
+/* ----------------------------------------- */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: #ECEFCA;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.close-button {
+  margin-top: 20px;
+  background-color: #547792;
+  color: #ECEFCA;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background-color: #213448;
+}
+
+/* ----------------------------------------- */
+/* Animation Overlay - Girl with Cart */
+/* ----------------------------------------- */
+.girl-with-cart-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: url('https://example.com/mall-background.jpg') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+  z-index: 2000;
+}
+
+.animated-cart {
+  position: absolute;
+  bottom: 0;
+  left: -200px; /* starts off-screen */
+  width: 150px;
+  animation: moveCart 5s ease-in-out 1;
+}
+
+@keyframes moveCart {
+  0% { left: -200px; }
+  50% { left: 50%; transform: scale(1.1); }
+  100% { left: 100%; }
+}
+
+/* ----------------------------------------- */
+/* Responsive Adjustments */
+/* ----------------------------------------- */
+@media (max-width: 768px) {
+  .header-content, .logo-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .brand-text h1 {
+    font-size: 2em;
+  }
+
+  .features, .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
